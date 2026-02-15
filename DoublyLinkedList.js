@@ -1,18 +1,18 @@
-class Node{
-    constructor(data){
+class Node {
+    constructor(data) {
         this.data = data
         this.next = null
         this.prev = null
     }
 }
 
-class DoublyLinkedList{
-    constructor(){
+class DoublyLinkedList {
+    constructor() {
         this.head = null;
         this.size = 0;
     }
 
-    insertAtBeginning(data){
+    insertAtBeginning(data) {
         const newNode = new Node(data);
         if (this.head === null) {
             this.head = newNode
@@ -26,7 +26,7 @@ class DoublyLinkedList{
         this.size++;
     }
 
-    insertAtEnd(data){
+    insertAtEnd(data) {
         const newNode = new Node(data)
 
         if (this.head === null) {
@@ -46,7 +46,7 @@ class DoublyLinkedList{
         this.size++;
     }
 
-    deleteFromBeginning(){
+    deleteFromBeginning() {
         if (this.size === 0) {
             return false;
         }
@@ -61,7 +61,7 @@ class DoublyLinkedList{
         this.size--;
     }
 
-    deleteFromEnd(){
+    deleteFromEnd() {
         if (this.head === null) {
             return false;
         }
@@ -70,7 +70,7 @@ class DoublyLinkedList{
             this.size--;
             return;
         }
-        
+
         let current = this.head;
         while (current.next.next !== null) {
             current = current.next;
@@ -78,8 +78,31 @@ class DoublyLinkedList{
 
         current.next = null;
         this.size--;
-
     }
+
+    reverse() {
+        if (this.head === null) {
+            console.log("Empty list");
+            return;
+        }
+
+        let current = this.head;
+        let temp = null;
+
+        while (current !== null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+
+            current = current.prev;
+        }
+
+        if (temp !== null) {
+            this.head = temp.prev;
+        }
+    }
+
+
 }
 
 const node1 = new Node(10);
