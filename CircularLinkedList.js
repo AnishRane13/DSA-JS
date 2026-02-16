@@ -75,6 +75,26 @@ class CircularLinkedList {
     this.size--;
   }
 
+  deleteFromEnd(){
+     if (this.head === null) {
+        return console.log("List is empty")
+    }
+    if (this.head.next === this.head) {
+        this.head = null;
+        this.size = 0;
+        return;
+    }
+
+    let current = this.head;
+    while (current.next.next !== this.head) {
+      current = current.next;
+    }
+
+    current.next = this.head;
+    this.size--;
+
+  }
+
 
 }
 
