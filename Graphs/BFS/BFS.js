@@ -11,6 +11,8 @@ const breadthFirstSearch = (graph, source) =>{
    }
 }
 
+// BFS cannot be done recursively. 
+
 const graph = {
     a: ['b', 'c'],
     b: ['d'],
