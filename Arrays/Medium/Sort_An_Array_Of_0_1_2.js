@@ -1,18 +1,29 @@
-var sortColors = function(nums) {
-    let n = nums.length;
+var sortColors = function (nums) {
+    const map = new Map();
 
-    for (let i = 0; i < n-1; i++) {
-            let minIndex = i;
-        for (let j = i+1; j < n; j++) {
-            if (nums[j] < nums[minIndex]) {
-                minIndex = j
-            }
-        }
-        if (minIndex !== i) {
-              [nums[i], nums[minIndex]] = [nums[minIndex], nums[i]];
-        }
+    // Count frequency
+    for (let num of nums) {
+        map.set(num, (map.get(num) || 0) + 1);
     }
-    return nums
+
+    let index = 0;
+
+    // Fill 0s
+    for (let i = 0; i < (map.get(0) || 0); i++) {
+        nums[index++] = 0;
+    }
+
+    // Fill 1s
+    for (let i = 0; i < (map.get(1) || 0); i++) {
+        nums[index++] = 1;
+    }
+
+    // Fill 2s
+    for (let i = 0; i < (map.get(2) || 0); i++) {
+        nums[index++] = 2;
+    }
+
+    return nums;
 };
 
-console.log(sortColors([2,0,1]))
+console.log(sortColors([2, 0, 1]));
