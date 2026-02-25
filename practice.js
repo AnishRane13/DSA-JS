@@ -1,16 +1,62 @@
-var twoSum = function(nums, target) {
-    const map = {};
+// /** * @param {
+// number[][]
+// } intervals * @return {
+// number[][]
+// } */ var merge = function (intervals) {
+//     intervals.sort((a, b) => a[0] - b[0]);
+//     const result = [];
+//     const n = intervals.length;
+//     let i = 0;
+//     while (i < n) {
+//         const left = intervals[i][0];
+//         let right = intervals[i][1];
+//         while (true) {
+//             i++;
+//             if (i < n && right >= intervals[i][0]) {
+//                 right = Math.max(right, intervals[i][1]);
+//             } else {
+//                 result.push([left, right]);
+//                 break;
+//             }
+//         }
+//     } return result;
+// };
 
-    for (let i = 0; i < nums.length; i++) {
-     let diff = target - nums[i];
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function (intervals) {
+    console.log("Input intervals:", JSON.stringify(intervals));
 
-     if (map.hasOwnProperty(diff)) {
-      return [i, map[diff]];
-     }
+    intervals.sort((a, b) => a[0] - b[0]);
+    console.log("Sorted intervals:", JSON.stringify(intervals));
 
-     map[nums[i]] = i;
+    const result = [];
+    const n = intervals.length;
+    let i = 0;
+
+    while (i < n) {
+        const left = intervals[i][0];
+        let right = intervals[i][1];
+        console.log(`\nStarting new merge group with interval [${left}, ${right}]`);
+
+        while (true) {
+            i++;
+            if (i < n && right >= intervals[i][0]) {
+                const prevRight = right;
+                right = Math.max(right, intervals[i][1]);
+                console.log(`  Overlapping interval found: [${intervals[i][0]}, ${intervals[i][1]}] — extending right from ${prevRight} to ${right}`);
+            } else {
+                console.log(`  No overlap. Pushing merged interval: [${left}, ${right}]`);
+                result.push([left, right]);
+                break;
+            }
+        }
     }
-    return null;
+
+    console.log("\nFinal merged intervals:", JSON.stringify(result));
+    return result;
 };
 
-console.log(twoSum([2,7,11,15],9));
+console.log(merge([[1,3],[2,6],[8,10],[15,18]]))
