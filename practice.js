@@ -1,18 +1,6 @@
-// https://leetcode.com/problems/rotate-image/description/
-
-var rotate = function(matrix) {
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = i+1; j < matrix[0].length; j++) {
-            [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
-        }
+/** * @param {number[]} nums1 * @param {number} m * @param {number[]} nums2 * @param {number} n * @return {void} Do not return anything, modify nums1 in-place instead. */ var merge =
+  function (nums1, m, nums2, n) {
+    for (let i = m - 1, j = n - 1, k = m + n - 1; j >= 0; --k) {
+      nums1[k] = i >= 0 && nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
     }
-    let n = matrix.length;
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length/2; j++) {
-          [matrix[i][j], matrix[i][n - 1 - j]] = [matrix[i][n - 1 - j], matrix[i][j]];
-        }
-    }
-    return matrix
-}; 
-
-console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
+  };
