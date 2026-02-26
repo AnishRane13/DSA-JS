@@ -1,62 +1,18 @@
-// /** * @param {
-// number[][]
-// } intervals * @return {
-// number[][]
-// } */ var merge = function (intervals) {
-//     intervals.sort((a, b) => a[0] - b[0]);
-//     const result = [];
-//     const n = intervals.length;
-//     let i = 0;
-//     while (i < n) {
-//         const left = intervals[i][0];
-//         let right = intervals[i][1];
-//         while (true) {
-//             i++;
-//             if (i < n && right >= intervals[i][0]) {
-//                 right = Math.max(right, intervals[i][1]);
-//             } else {
-//                 result.push([left, right]);
-//                 break;
-//             }
-//         }
-//     } return result;
-// };
+// https://leetcode.com/problems/rotate-image/description/
 
-/**
- * @param {number[][]} intervals
- * @return {number[][]}
- */
-var merge = function (intervals) {
-    console.log("Input intervals:", JSON.stringify(intervals));
-
-    intervals.sort((a, b) => a[0] - b[0]);
-    console.log("Sorted intervals:", JSON.stringify(intervals));
-
-    const result = [];
-    const n = intervals.length;
-    let i = 0;
-
-    while (i < n) {
-        const left = intervals[i][0];
-        let right = intervals[i][1];
-        console.log(`\nStarting new merge group with interval [${left}, ${right}]`);
-
-        while (true) {
-            i++;
-            if (i < n && right >= intervals[i][0]) {
-                const prevRight = right;
-                right = Math.max(right, intervals[i][1]);
-                console.log(`  Overlapping interval found: [${intervals[i][0]}, ${intervals[i][1]}] — extending right from ${prevRight} to ${right}`);
-            } else {
-                console.log(`  No overlap. Pushing merged interval: [${left}, ${right}]`);
-                result.push([left, right]);
-                break;
-            }
+var rotate = function(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = i+1; j < matrix[0].length; j++) {
+            [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
         }
     }
+    let n = matrix.length;
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length/2; j++) {
+          [matrix[i][j], matrix[i][n - 1 - j]] = [matrix[i][n - 1 - j], matrix[i][j]];
+        }
+    }
+    return matrix
+}; 
 
-    console.log("\nFinal merged intervals:", JSON.stringify(result));
-    return result;
-};
-
-console.log(merge([[1,3],[2,6],[8,10],[15,18]]))
+console.log(rotate([[1,2,3],[4,5,6],[7,8,9]]))
