@@ -1,11 +1,13 @@
+// https://leetcode.com/problems/find-the-duplicate-number/description/
+
 var findDuplicate = function(nums) {
+    const set = new Set();
 
     for (let i = 0; i < nums.length; i++) {
-        const ind = Math.abs(nums[i]);
-        if (nums[ind]<0) {
-            return ind;
+        if (set.has(nums[i])) {
+            return nums[i]
         }
-        nums[ind] = -nums[ind]
+        set.add(nums[i])
     }
     return -1;
 };
