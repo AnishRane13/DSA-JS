@@ -1,35 +1,21 @@
+// https://leetcode.com/problems/product-of-array-except-self/description/
+
 var productExceptSelf = function (nums) {
-    const n = nums.length;
-    const ans = new Array(n);
+    const ans = [];
+    let start = 1;
 
-    console.log("Input:", nums);
-    console.log("------ PREFIX PASS ------");
-
-    // Prefix pass
-    for (let i = 0, left = 1; i < n; ++i) {
-        console.log(`Before index ${i}: left = ${left}`);
-        ans[i] = left;
-        left *= nums[i];
-        console.log(`After index ${i}: ans = [${ans}], new left = ${left}`);
-        console.log("----");
+    for (let i = 0; i < nums.length; i++) {
+        ans.push(start);
+        start = start*nums[i];
     }
 
-    console.log("After Prefix Pass:", ans);
-    console.log("------ SUFFIX PASS ------");
-
-    // Suffix pass
-    for (let i = n - 1, right = 1; i >= 0; --i) {
-        console.log(`Before index ${i}: right = ${right}`);
-        ans[i] *= right;
-        right *= nums[i];
-        
-        console.log(`After index ${i}: ans = [${ans}], new right = ${right}`);
-        console.log("----");
+    let start2 = 1;
+    
+    for (let i = nums.length-1; i >= 0; i--) {
+        ans[i] = start2*ans[i];
+        start2 = start2*nums[i]
     }
-
-    console.log("Final Answer:", ans);
-    console.log("=====================================");
-    return ans;
+    return ans
 };
 
 console.log(productExceptSelf([-1, 1, 0, -3, 3]));
