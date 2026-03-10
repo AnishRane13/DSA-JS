@@ -1,23 +1,28 @@
 /**
- * @param {number} numRows
- * @return {number[][]}
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
  */
-var generate = function(numRows) {
-    let ans = [[1]];
+var setZeroes = function(matrix) {
+    const row = new Set();
+    const col = new Set();
 
-    for (let i = 1; i < numRows; i++) {
-    let currRow = [1];
-        for (let j = 1; j < i ; j++) {
-        //    console.log(i)
-           let currVal = ans[i-1][j-1] + ans[i-1][j];
-            currRow.push(currVal)
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+           if (matrix[i][j] === 0) {
+                row.add(i);
+                col.add(j);
+           }
         }
-    currRow.push(1);
-    ans.push(currRow);
     }
-    return ans;
+
+     for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          if (row.has(i) || col.has(j)) {
+            matrix[i][j] = 0;
+          }
+        }
+    }
+    return matrix
 };
 
-console.log(generate(5));
-
-// [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+console.log(setZeroes([[1,1,1],[1,0,1],[1,1,1]]))
