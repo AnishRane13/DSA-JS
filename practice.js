@@ -1,28 +1,28 @@
 /**
- * @param {number[][]} matrix
- * @return {void} Do not return anything, modify matrix in-place instead.
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
  */
-var setZeroes = function(matrix) {
-    const row = new Set();
-    const col = new Set();
+var sortColors = function (nums) {
+    const map = new Map();
 
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length; j++) {
-           if (matrix[i][j] === 0) {
-                row.add(i);
-                col.add(j);
-           }
-        }
+    for(let num of nums){
+        map.set(num, (map.get(num) || 0) + 1);
     }
 
-     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length; j++) {
-          if (row.has(i) || col.has(j)) {
-            matrix[i][j] = 0;
-          }
-        }
+    let index = 0;
+
+    for (let i = 0; i < (map.get(0) || 0); i++) {
+    nums[index++] = 0;
     }
-    return matrix
+
+      for (let i = 0; i < (map.get(1) || 0); i++) {
+    nums[index++] = 1;
+    }
+
+      for (let i = 0; i < (map.get(2) || 0); i++) {
+    nums[index++] = 2;
+    }
+    return nums
 };
 
-console.log(setZeroes([[1,1,1],[1,0,1],[1,1,1]]))
+console.log(sortColors([2, 0, 1]));
