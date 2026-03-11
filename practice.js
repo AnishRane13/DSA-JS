@@ -1,23 +1,28 @@
-// https://leetcode.com/problems/search-a-2d-matrix/description/
+// https://leetcode.com/problems/majority-element/description/
 
-var searchMatrix = function (matrix, target) {
-  const row = matrix.length;
-  const col = matrix[0].length;
+var majorityElement = function(nums) {
+    let elementCounts = new Map();
+    let highestCount = 0;
+    highestCountElement = null;
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[0].length; j++) {
-      if (matrix[i][j] === target) {
-        return true
-      }
+    for(const num of nums){
+        let currentCount;
+
+        if (elementCounts.has(num)) {
+            currentCount = elementCounts.get(num) + 1;
+            elementCounts.set(num, currentCount);
+        }else{
+            currentCount = 1;
+            elementCounts.set(num,currentCount);
+        }
+
+        if (currentCount > highestCount) {
+            highestCount = currentCount;
+            highestCountElement = num;
+        } 
     }
-  }
-  return false
+
+    return highestCountElement;
 };
 
-console.log(
-  searchMatrix([
-    [1, 3, 5, 7],
-    [10, 11, 16, 20],
-    [23, 30, 34, 60],
-  ],3),
-);
+console.log(majorityElement([2,2,1,1,1,2,2]))
