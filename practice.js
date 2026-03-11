@@ -1,28 +1,23 @@
-/**
- * @param {number[]} nums
- * @return {void} Do not return anything, modify nums in-place instead.
- */
-var sortColors = function (nums) {
-    const map = new Map();
+// https://leetcode.com/problems/search-a-2d-matrix/description/
 
-    for(let num of nums){
-        map.set(num, (map.get(num) || 0) + 1);
+var searchMatrix = function (matrix, target) {
+  const row = matrix.length;
+  const col = matrix[0].length;
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (matrix[i][j] === target) {
+        return true
+      }
     }
-
-    let index = 0;
-
-    for (let i = 0; i < (map.get(0) || 0); i++) {
-    nums[index++] = 0;
-    }
-
-      for (let i = 0; i < (map.get(1) || 0); i++) {
-    nums[index++] = 1;
-    }
-
-      for (let i = 0; i < (map.get(2) || 0); i++) {
-    nums[index++] = 2;
-    }
-    return nums
+  }
+  return false
 };
 
-console.log(sortColors([2, 0, 1]));
+console.log(
+  searchMatrix([
+    [1, 3, 5, 7],
+    [10, 11, 16, 20],
+    [23, 30, 34, 60],
+  ],3),
+);
