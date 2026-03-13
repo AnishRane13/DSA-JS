@@ -1,41 +1,70 @@
 // https://leetcode.com/problems/compare-version-numbers/description/
 
+// var compareVersion = function(version1, version2) {
+//     const arr1 = version1.split(".");
+//     const arr2 = version2.split(".");
+
+//     // console.log("Version1:", version1, "->", arr1);
+//     // console.log("Version2:", version2, "->", arr2);
+
+//     let size = 0;
+//     if (arr1.length > arr2.length) {
+//         size = arr1.length;
+//     } else {
+//         size = arr2.length;
+//     }
+
+//     // console.log("Comparing up to size:", size);
+
+//     for (let i = 0; i < size; i++) {
+//         if (arr1[i] === undefined) {
+//             arr1[i] = 0;
+//         }
+//         if (arr2[i] === undefined) {
+//             arr2[i] = 0;
+//         }
+
+//         console.log(`Comparing: arr1[${i}] = ${arr1[i]}, arr2[${i}] = ${arr2[i]}`);
+
+//         if (parseInt(arr1[i]) > parseInt(arr2[i])) {
+//             // console.log("Result: 1 (arr1 is greater)");
+//             return 1;
+//         } else if (parseInt(arr1[i]) < parseInt(arr2[i])) {
+//             // console.log("Result: -1 (arr2 is greater)");
+//             return -1;
+//         }
+//     }
+
+//     // console.log("Result: 0 (versions are equal)");
+//     return 0;
+// };
+
 var compareVersion = function(version1, version2) {
     const arr1 = version1.split(".");
     const arr2 = version2.split(".");
 
-    // console.log("Version1:", version1, "->", arr1);
-    // console.log("Version2:", version2, "->", arr2);
-
     let size = 0;
+
     if (arr1.length > arr2.length) {
         size = arr1.length;
-    } else {
+    }else{
         size = arr2.length;
     }
-
-    // console.log("Comparing up to size:", size);
 
     for (let i = 0; i < size; i++) {
         if (arr1[i] === undefined) {
             arr1[i] = 0;
         }
-        if (arr2[i] === undefined) {
-            arr2[i] = 0;
+          if (arr2[i] === undefined) {
+            arr2[i]= 0;
         }
 
-        console.log(`Comparing: arr1[${i}] = ${arr1[i]}, arr2[${i}] = ${arr2[i]}`);
-
-        if (parseInt(arr1[i]) > parseInt(arr2[i])) {
-            // console.log("Result: 1 (arr1 is greater)");
-            return 1;
-        } else if (parseInt(arr1[i]) < parseInt(arr2[i])) {
-            // console.log("Result: -1 (arr2 is greater)");
+        if (parseInt(arr1[i]) < parseInt(arr2[i])) {
             return -1;
+        }else if(parseInt(arr1[i]) >parseInt(arr2[i])){
+            return 1;
         }
     }
-
-    // console.log("Result: 0 (versions are equal)");
     return 0;
 };
 
