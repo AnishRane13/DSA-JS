@@ -1,28 +1,22 @@
-// https://leetcode.com/problems/majority-element/description/
+var generate = function(numRows) {
 
-var majorityElement = function(nums) {
-    let elementCounts = new Map();
-    let highestCount = 0;
-    highestCountElement = null;
-
-    for(const num of nums){
-        let currentCount;
-
-        if (elementCounts.has(num)) {
-            currentCount = elementCounts.get(num) + 1;
-            elementCounts.set(num, currentCount);
-        }else{
-            currentCount = 1;
-            elementCounts.set(num,currentCount);
+    const arr = [[1]];
+    
+    for (let i = 1; i < numRows; i++) {
+        const val = [1];
+        for (let j = 1; j < i; j++) {
+        let nextVal = arr[i-1][j] + arr[i-1][j-1]
+        val.push(nextVal)
         }
-
-        if (currentCount > highestCount) {
-            highestCount = currentCount;
-            highestCountElement = num;
-        } 
+        val.push(1)    
+        arr.push(val)
     }
-
-    return highestCountElement;
+    return arr
 };
 
-console.log(majorityElement([2,2,1,1,1,2,2]))
+console.log(generate(5));
+
+// [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+// i = 3
+// j = 1
