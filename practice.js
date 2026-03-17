@@ -1,22 +1,13 @@
-var generate = function(numRows) {
+var findDuplicate = function(nums) {
+    const set = new Set();
 
-    const arr = [[1]];
-    
-    for (let i = 1; i < numRows; i++) {
-        const val = [1];
-        for (let j = 1; j < i; j++) {
-        let nextVal = arr[i-1][j] + arr[i-1][j-1]
-        val.push(nextVal)
-        }
-        val.push(1)    
-        arr.push(val)
+    for (let i = 0; i < nums.length; i++) {
+      if (set.has(nums[i])) {
+            return nums[i];
+      }
+      set.add(nums[i])
     }
-    return arr
+    return -1;
 };
 
-console.log(generate(5));
-
-// [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
-
-// i = 3
-// j = 1
+console.log(findDuplicate([1,3,4,2,2]))
