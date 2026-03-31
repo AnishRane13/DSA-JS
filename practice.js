@@ -1,18 +1,19 @@
-function maxSubArray(nums) {
-    let sum = nums[0];
-    let maxSum = nums[0];
+function mostWater(nums) {
+    let left = 0, right = nums.length - 1;
+    let maxWater = 0;
 
-    for (let i = 1; i < nums.length; i++) {
-        sum = Math.max(nums[i], sum + nums[i]);
-        maxSum = Math.max(maxSum, sum);
+    while (left < right) {
+        maxWater = Math.max(maxWater, Math.min(nums[left],nums[right]) * (right - left));
+        if (nums[left] <= nums[right]) {
+            left++
+        }else{
+            right--;
+        }
     }
-
-    return maxSum;
+    return maxWater
 }
 
-console.log(MaxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
-console.log(MaxSubArray([5,4,-1,7,8]))
-console.log(MaxSubArray([-1,-2,-3,-4]))
-console.log(MaxSubArray([2,-1,2,3,4,-5]))
-console.log(MaxSubArray([-2,1]))
-// console.log(MaxSubArray([5,4,-1,7,8]))
+console.log(mostWater([1,8,6,2,5,4,8,3,7]))
+console.log(mostWater([1,8,6,2,5,4,8,3,7]))
+console.log(mostWater([1,1]))
+
