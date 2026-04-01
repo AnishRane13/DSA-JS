@@ -1,19 +1,17 @@
-function mostWater(nums) {
-    let left = 0, right = nums.length - 1;
-    let maxWater = 0;
+function temperatures(nums) {
+    let ans = new Array(nums.length).fill(0);
+    let stack = [];
 
-    while (left < right) {
-        maxWater = Math.max(maxWater, Math.min(nums[left],nums[right]) * (right - left));
-        if (nums[left] <= nums[right]) {
-            left++
-        }else{
-            right--;
+    for (let i = 0; i <  nums.length; i++) {
+        while (stack.length > 0 && nums[i] > nums[stack[stack.length - 1]]) {
+            let prevIndex = stack.pop();
+            ans[prevIndex] = i - prevIndex;
         }
+        stack.push(i);
     }
-    return maxWater
+    return ans;
 }
 
-console.log(mostWater([1,8,6,2,5,4,8,3,7]))
-console.log(mostWater([1,8,6,2,5,4,8,3,7]))
-console.log(mostWater([1,1]))
+console.log(temperatures([73, 74, 75, 71, 69, 72, 76, 73]))
+
 
