@@ -1,27 +1,43 @@
 // https://leetcode.com/problems/valid-anagram/
 
+// var isAnagram = function(s, t) {
+
+//     if (s.length !== t.length) return false;
+
+//     const map1 = new Map();
+
+//     // Step 1: Count characters of s
+//     for (let i = 0; i < s.length; i++) {
+//         map1.set(s[i], (map1.get(s[i]) || 0) + 1);
+//     }
+
+//     // Step 2: Reduce using t
+//     for (let i = 0; i < t.length; i++) {
+
+//         if (!map1.has(t[i]) || map1.get(t[i]) === 0) {
+//             return false;
+//         }
+
+//         map1.set(t[i], map1.get(t[i]) - 1);
+//     }
+
+//     return true;
+// };
+
+
 var isAnagram = function(s, t) {
 
-    if (s.length !== t.length) return false;
-
-    const map1 = new Map();
-
-    // Step 1: Count characters of s
-    for (let i = 0; i < s.length; i++) {
-        map1.set(s[i], (map1.get(s[i]) || 0) + 1);
+    if (s.length !== t.length){
+        return false;
     }
 
-    // Step 2: Reduce using t
-    for (let i = 0; i < t.length; i++) {
+    s = s.split('').sort().join('');
+    t = t.split('').sort().join('');
 
-        if (!map1.has(t[i]) || map1.get(t[i]) === 0) {
-            return false;
-        }
-
-        map1.set(t[i], map1.get(t[i]) - 1);
+    if (s === t) {
+        return true
     }
-
-    return true;
+    return false
 };
 
 console.log(isAnagram("anagram","nagaram")); // true

@@ -18,5 +18,22 @@ var productExceptSelf = function (nums) {
     return ans
 };
 
+// var productExceptSelf = function (nums) {
+
+//     let ans = [];
+//     for (let i = 0; i < nums.length; i++) {
+//         let start = 1;
+//         for (let j = 0; j < nums.length; j++) {
+//             if(i === j){
+//                 continue
+//             }else{
+//             start = start * nums[j]
+//             }
+//         }
+//     ans.push(start)
+//     }
+//     return ans
+// };
+
 console.log(productExceptSelf([-1, 1, 0, -3, 3]));
 console.log(productExceptSelf([0, 0]));

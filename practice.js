@@ -1,17 +1,20 @@
-function temperatures(nums) {
-    let ans = new Array(nums.length).fill(0);
-    let stack = [];
+var longestConsecutive = function (nums) {
+   const set = new Set(nums);
+   let streak = 0;
 
-    for (let i = 0; i <  nums.length; i++) {
-        while (stack.length > 0 && nums[i] > nums[stack[stack.length - 1]]) {
-            let prevIndex = stack.pop();
-            ans[prevIndex] = i - prevIndex;
-        }
-        stack.push(i);
-    }
-    return ans;
-}
+   for(let num of set){
+      if (!set.has(num - 1)) {
+         let count = 1;
+         let curr = num
 
-console.log(temperatures([73, 74, 75, 71, 69, 72, 76, 73]))
+         while (set.has(curr+1)) {
+            curr++;
+            count++;
+         }
+         streak = Math.max(streak,count)
+      }
+   }
+   return streak;
+}; 
 
-
+console.log(longestConsecutive([2, 20, 4, 10, 3, 4, 5]))
